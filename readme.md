@@ -1,0 +1,5 @@
+- variable type
+- function and closure
+- Promise
+- async / await
+- operation on array

@@ -1,14 +1,55 @@
 // ----------------------------------------
-// Function declaration
+// Function declaration and function expression
 // named function and anonymous function
 // ----------------------------------------
 // function showMessage() {
 //   console.log("Hello friends!");
 // }
 
+// const showMessage = function() {
+//   console.log("Hello friends!");
+// };
+
 // const showMessage = () => {
 //   console.log("Hello friends!");
+// };
+
+// showMessage();
+
+// ----------------------------------------
+// Function declaration  can be called before actual declaration
+// while function expression can not
+// ----------------------------------------
+// showMessage();
+
+// function showMessage() {
+//   console.log("Hello friends!");
 // }
+
+// const showMessage = function() {
+//   console.log("Hello friends!");
+// };
+
+// const showMessage = () => {
+//   console.log("Hello friends!");
+// };
+
+// ----------------------------------------
+// `this` on named function and anonymous function
+// ----------------------------------------
+// function showMessage() {
+//   console.log(this.process.env);
+// }
+
+// const showMessage = function() {
+//   console.log(this);
+// };
+
+// const showMessage = () => {
+//   console.log(this);
+// };
+
+// showMessage();
 
 // ----------------------------------------
 // Function parameters
@@ -17,6 +58,8 @@
 //   console.log(from + ": " + message);
 // }
 
+// showMessage("Eko", "Hello world");
+
 // ----------------------------------------
 // String template
 // ----------------------------------------
@@ -24,13 +67,15 @@
 //   console.log(`${from}: ${message}`);
 // }
 
+// showMessage("Eko", "Hello world");
+
 // ----------------------------------------
 // Default value
 // ----------------------------------------
 // function showMessage(from, message) {
 //   console.log(`${from}: ${message}`);
 // }
-// showMessage("Ali");
+// showMessage("Ali", null);
 
 // function showMessage(from, message = "Empty message") {
 //   console.log(`${from}: ${message}`);
@@ -40,9 +85,9 @@
 // ----------------------------------------
 // Passing undefined vs. other falsy values
 // ----------------------------------------
-// function showMessage(from, message = "Empty message") {
-//   console.log(`${from}: ${message}`);
-// }
+function showMessage(from, message = "Empty message") {
+  console.log(`${from}: ${message}`);
+}
 // showMessage("Ali", undefined);
 // showMessage("Ali", null);
 // showMessage("Ali", "");
@@ -93,6 +138,8 @@
 // }
 
 // const addFive = addGenerator(5);
+// const addTen = addGenerator(10);
+// const addTwenty = addGenerator(20);
 
 // const result1 = addFive(3);
 // console.log(result1);
@@ -106,15 +153,75 @@
 // ----------------------------------------
 // Closure - Lexical scoping
 // ----------------------------------------
-function counterGenerator(numberToAdd) {
-  let state = 0;
+// function counterGenerator() {
+//   let state = 0;
 
-  return function count() {
-    return state++;
-  };
-}
+//   return function count() {
+//     return state++;
+//   };
+// }
 
-const letsCount = counterGenerator();
-console.log(letsCount());
-console.log(letsCount());
-console.log(letsCount());
+// const letsCount = counterGenerator();
+// const letsCount2 = counterGenerator();
+// console.log(letsCount());
+// console.log(letsCount());
+// console.log(letsCount());
+// console.log(letsCount2());
+// console.log(letsCount2());
+// console.log(letsCount2());
+
+// ----------------------------------------
+// Function as arguments
+// ----------------------------------------
+// const checkAge = (age, onAdult, onChild) => {
+//   if (age > 17) {
+//     onAdult();
+//   } else {
+//     onChild();
+//   }
+// };
+
+// const onAdultCallback = () => console.log("You are adult. Go ahead!");
+// const onChildCallback = () => console.log("Ups, please comeback later");
+
+// console.log(checkAge(15, onAdultCallback, onChildCallback));
+// console.log(checkAge(19, onAdultCallback, onChildCallback));
+
+// ----------------------------------------
+// How to name a function
+// ----------------------------------------
+// - brief
+// - describe what function does
+
+// showMessage(..)     // shows a message
+// getAge(..)          // returns the age (gets it somehow)
+// calcSum(..)         // calculates a sum and returns the result
+// createForm(..)      // creates a form (and usually returns it)
+// checkPermission(..) // checks a permission, returns true/false
+
+// ----------------------------------------
+// How to organize a function
+// ----------------------------------------
+// - A function should do exactly what is suggested by its name, no more.
+
+// const isAllAdult = personAges => {
+//   for (let i = 0; i < personAges.length; i++) {
+//     if (!(personAges[i] > 17)) {
+//       return false;
+//     }
+//   }
+//   return true;
+// };
+
+// const isAllAdult = personAges => {
+//   for (let i = 0; i < personAges.length; i++) {
+//     if (!isAdult(personAges[i])) {
+//       return false;
+//     }
+//   }
+//   return true;
+// };
+
+// const isAdult = age => age > 17;
+
+// console.log(isAllAdult([15, 19, 20, 25]));
